@@ -1,16 +1,22 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "cn";
-import prisma from "../../lib/prisma";
+import { HydrateClient, prefetch, trpc } from "@/trpc/server";
+import Client from "./client";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import { Suspense } from "react";
 
 export default async function Home() {
-  const users = await prisma.user.findMany({
-    
-  });
-
+   prefetch(
+    trpc.users.queryOptions()
+  );
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-24">
-      {JSON.stringify(users, null, 2)}
-    </div>
+    <HydrateClient>
+      <div className="flex min-h-screen flex-col items-center justify-center p-24">
+        <ErrorBoundary fallback={<div>Something went wrong</div>}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Client />
+        </Suspense>
+      </ErrorBoundary>
+      </div>
+    </HydrateClient>
   );
 }
