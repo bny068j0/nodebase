@@ -2,11 +2,11 @@ import { HydrateClient, prefetch, trpc } from "@/trpc/server";
 import Client from "./client";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import { Suspense } from "react";
+import { requireAuth } from "@/lib/auth-utils";
 
 export default async function Home() {
-   prefetch(
-    trpc.users.queryOptions()
-  );
+  prefetch(trpc.users.queryOptions())
+  await requireAuth();
 
   return (
     <HydrateClient>
