@@ -15,10 +15,12 @@
     "prisma:seed": "npx prisma db seed",
     "prisma:reset": "npx prisma migrate reset --force",
     "prisma:pull": "npx prisma db pull",
-    "prisma:push": "npx prisma db push"
+    "prisma:push": "npx prisma db push",
+    "auth:studio": "npx better-auth-studio start --config src/lib/auth.ts --no-open"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
+    "@better-auth/infra": "^0.4.25",
     "@hookform/resolvers": "^6.0.2",
     "@prisma/adapter-pg": "^7.10.1",
     "@prisma/client": "^7.10.1",
@@ -27,6 +29,8 @@
     "@trpc/client": "^11.22.1",
     "@trpc/server": "^11.22.1",
     "@trpc/tanstack-react-query": "^11.22.1",
+    "better-auth": "^1.7.14",
+    "better-auth-studio": "^1.1.5",
     "class-variance-authority": "^0.7.1",
     "client-only": "^0.0.1",
     "cmdk": "^1.1.1",
