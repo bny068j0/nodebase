@@ -3,6 +3,15 @@ import prisma from '../../../lib/prisma';
 import { inngest } from '@/inngest/client';
  
 export const appRouter = createTRPCRouter({
+  testAi: baseProcedure.mutation(async () => {
+   await inngest.send({
+      name: "app/task.created"
+    })
+
+    return { message: "AI test completed successfully" };
+  }),
+
+
   getWorkflows: baseProcedure.query(async () => {
     const workflows = await prisma.workflow.findMany();
     return workflows;
