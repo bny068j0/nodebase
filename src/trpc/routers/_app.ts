@@ -1,24 +1,26 @@
-import { z } from 'zod';
 import { baseProcedure, createTRPCRouter } from '../init';
 import prisma from '../../../lib/prisma';
+import { inngest } from '@/inngest/client';
  
 export const appRouter = createTRPCRouter({
-  hello: baseProcedure
-    .input(
-      z.object({
-        text: z.string(),
-      }),
-    )
-    .query((opts) => {
-      return {
-        greeting: `hello ${opts.input.text}`,
-      };
-    }),
+  getWorkflows: baseProcedure.query(async () => {
+    const workflows = await prisma.workflow.findMany();
+    return workflows;
+  }),
 
-    users: baseProcedure.query(async () => {
-      const users = await prisma.user.findMany();
-      return users;
+  createWorkflow: baseProcedure.mutation(async () => {
+    await inngest.send({
+      name: "app/task.created",
+      data: {
+        name: "New Workflow"
+      }
     })
+
+    return {
+      message: "Workflow creation initiated"
+    }
+  })
+    
 });
  
 // export type definition of API

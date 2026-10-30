@@ -92,3 +92,10 @@ model TwoFactor {
   @@index([userId])
   @@map("twoFactor")
 }
+
+model Workflow {
+  id   String @id @default(cuid())
+  name String
+
+  @@map("workflow")
+}
