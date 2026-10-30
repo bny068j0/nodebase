@@ -16,7 +16,9 @@
     "prisma:reset": "npx prisma migrate reset --force",
     "prisma:pull": "npx prisma db pull",
     "prisma:push": "npx prisma db push",
-    "auth:studio": "npx better-auth-studio start --config src/lib/auth.ts --no-open"
+    "auth:studio": "npx better-auth-studio start --config src/lib/auth.ts --no-open",
+    "inngest:dev": "inngest-cli dev",
+    "dev:all": "dekit up"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
@@ -38,9 +40,10 @@
     "date-fns": "^4.4.0",
     "dotenv": "^18.0.9",
     "embla-carousel-react": "^8.6.0",
+    "inngest": "^4.26.2",
     "input-otp": "^1.5.0",
     "lucide-react": "^1.63.0",
-    "next": "15.5.4",
+    "next": "^15.5.28",
     "next-themes": "^0.4.6",
     "pg": "^8.23.1",
     "radix-ui": "^1.8.1",
@@ -57,11 +60,13 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
+    "@dekit/cli": "^0.10.3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "inngest-cli": "^1.49.0",
     "prisma": "^7.10.1",
     "shadcn": "^4.23.0",
     "tailwindcss": "^4",

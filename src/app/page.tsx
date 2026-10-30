@@ -5,7 +5,6 @@ import { Suspense } from "react";
 import { requireAuth } from "@/lib/auth-utils";
 
 export default async function Home() {
-  prefetch(trpc.users.queryOptions())
   await requireAuth();
 
   return (

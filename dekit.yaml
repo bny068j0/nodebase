@@ -1,0 +1,9 @@
+tasks:
+  inngest:
+    cmd: ["npm", "run", "inngest:dev"]
+    ready: { tcp: 8288 }
+  next:
+    cmd: ["npm", "run", "dev"]
+    env: { INNGEST_DEV: "1" }
+    deps: [inngest]
+    autostart: true
