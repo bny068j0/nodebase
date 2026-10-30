@@ -21,9 +21,15 @@ const Client = () => {
     }
   }));
 
+  const testAiMutation = useMutation(trpc.testAi.mutationOptions());
+
   return (
     <div className='flex flex-col gap-4 items-center'>
       {JSON.stringify(workflows, null, 2)}
+
+      <Button className="block w-2xl" onClick={() => testAiMutation.mutate()}>
+        Test AI
+      </Button>
 
       <Button className="block w-2xl" onClick={() => mutation.mutate()}>
         Create Workflow
